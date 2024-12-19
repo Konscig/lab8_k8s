@@ -1,0 +1,138 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stars-pod
+  labels:
+    app: stars
+spec:
+  containers:
+  - name: stars
+    image: konscig/stars:latest
+    ports:
+    - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stars-service
+spec:
+  selector:
+    app: stars
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+    nodePort: 30000
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sequences-pod
+  labels:
+    app: sequences
+spec:
+  containers:
+  - name: sequences
+    image: konscig/sequences:latest
+    ports:
+    - containerPort: 8081
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sequences-service
+spec:
+  selector:
+    app: sequences
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 8081
+    targetPort: 8081
+    nodePort: 30001
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fibonacci-pod
+  labels:
+    app: fibonacci
+spec:
+  containers:
+  - name: fibonacci
+    image: konscig/fibonacci:latest
+    ports:
+    - containerPort: 8082
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fibonacci-service
+spec:
+  selector:
+    app: fibonacci
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 8082
+    targetPort: 8082
+    nodePort: 30002
+  
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: coinflip-pod
+  labels:
+    app: coinflip
+spec:
+  containers:
+  - name: coinflip
+    image: konscig/coinflip:latest
+    ports:
+    - containerPort: 8083
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: coinflip-service
+spec:
+  selector:
+    app: coinflip
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 8083
+    targetPort: 8083
+    nodePort: 30003
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: word-count-pod
+  labels:
+    app: word-count
+spec:
+  containers:
+  - name: word-count
+    image: konscig/word-count:latest
+    ports:
+    - containerPort: 8084
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: word-count-service
+spec:
+  selector:
+    app: word-count
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 8084
+    targetPort: 8084
+    nodePort: 30004
+  
